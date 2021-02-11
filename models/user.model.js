@@ -8,6 +8,7 @@ const User = function(user) {
     this.ipAddress = user.ip_address;
     this.status = user.status;
 };
+
 const QUERY_FIND_USER_BY =
     'SELECT \n' +
     '  u.firstname, \n' +
@@ -94,6 +95,5 @@ User.findByStatus = (param, result) => {
         result({ kind: "not_found" }, null);
     });
 };
-
 
 module.exports = User;

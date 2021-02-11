@@ -1,9 +1,13 @@
 const express = require("express");
-var cors = require('cors');
+const path = require('path');
+const cors = require('cors');
 const app = express();
+global.__basedir = __dirname;
+
 app.use(cors());
 
 require("./routes/user.routes.js")(app);
+require("./routes/file.routes.js")(app);
 
 // set port, listen for requests
 app.listen(3000, () => {
