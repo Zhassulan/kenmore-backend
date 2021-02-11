@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "4051cc24-8417-4361-ade9-b6f63fbdbf68",
+		"name": "Kenmore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "find user by name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/users/name/a",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"name",
+						"a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find user by email",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/users/email/ii",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"email",
+						"ii"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find user by birthdate",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/users/birthdate/10.02.2000",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"birthdate",
+						"10.02.2000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find user by status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/users/status/lead",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"status",
+						"lead"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all statuses",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/users/statuses",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"statuses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get file",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/files/file-1613064262112.jpg",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"files",
+						"file-1613064262112.jpg"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "upload file",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/Dev/Pictures/362_wide.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/files",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"files"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

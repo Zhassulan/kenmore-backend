@@ -1,3 +1,6 @@
+
+The backend contains user queries and files functionality together.
+
 Setup backend:
     
     - clone project
@@ -9,5 +12,6 @@ Setup backend:
         - change PASSWORD in config/db.config.js to your generated password
         - restore database from dump file in 'db' folder
         - query for point 5 in task located in db/user_queries.sql file
-    - create          
+    - start backend by command in project root 'node server.js'
+    - for test you can use Postman collection in 'postman' folder         
     
