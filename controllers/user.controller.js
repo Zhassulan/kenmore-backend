@@ -1,7 +1,7 @@
 const User = require("../models/user.model");
 const UserStatus = require("../models/user.status.model");
 
-// Find a single User by name
+// Find a User(s) by name
 exports.findByName = (req, res) => {
     User.findByName(req.params.name, (err, data) => {
         if (err) {
@@ -28,3 +28,54 @@ exports.getAllStatuses = (req, res) => {
         else res.send(data);
     });
 }
+
+// Find a User(s) by email
+exports.findByEmail = (req, res) => {
+    User.findByEmail(req.params.email, (err, data) => {
+        if (err) {
+            if (err.kind === "not_found") {
+                res.status(404).send({
+                    message: `Not found User(s) with e-mail ${req.params.email}.`
+                });
+            } else {
+                res.status(500).send({
+                    message: "Error retrieving User(s) with e-mail " + req.params.email
+                });
+            }
+        } else res.send(data);
+    });
+};
+
+exports.findByBirthdate = (req, res) => {
+    User.findByBirthdate(req.params.date, (err, data) => {
+        if (err) {
+            if (err.kind === "not_found") {
+                res.status(404).send({
+                    message: `Not found User(s) with birthdate ${req.params.date}.`
+                });
+            } else {
+                res.status(500).send({
+                    message: "Error retrieving User(s) with birthdate " + req.params.date
+                });
+            }
+        } else res.send(data);
+    });
+};
+
+exports.findByStatus = (req, res) => {
+    User.findByStatus(req.params.status, (err, data) => {
+        if (err) {
+            if (err.kind === "not_found") {
+                res.status(404).send({
+                    message: `Not found User(s) with status ${req.params.status}.`
+                });
+            } else {
+                res.status(500).send({
+                    message: "Error retrieving User(s) with status " + req.params.status
+                });
+            }
+        } else res.send(data);
+    });
+};
+
+

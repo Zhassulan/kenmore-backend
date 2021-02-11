@@ -7,14 +7,16 @@ const User = function(user) {
     this.birthDate = user.birthDate;
     this.ipAddress = user.ip_address;
     this.status = user.status;
-    this.registrationDate = user.created;
 };
 const QUERY_FIND_USER_BY =
     'SELECT \n' +
     '  u.firstname, \n' +
     '  u.lastname, \n' +
     '  u.email, \n' +
-    '  u.birth_date, u.ip_address, s.status FROM users u \n' +
+    '  u.birth_date,  \n' +
+    '  u.ip_address,  \n' +
+    '  s.status  \n' +
+    'FROM users u \n' +
     '  INNER JOIN user_statuses s ON s.id = u.status_id \n';
 
 User.findByName = (param, result) => {
@@ -26,8 +28,8 @@ User.findByName = (param, result) => {
         }
 
         if (res.length) {
-            console.log("found user: ", res[0]);
-            result(null, res[0]);
+            console.log("found user(s): ", res);
+            result(null, res);
             return;
         }
 
@@ -35,5 +37,63 @@ User.findByName = (param, result) => {
         result({ kind: "not_found" }, null);
     });
 };
+
+User.findByEmail = (param, result) => {
+    sql.query(QUERY_FIND_USER_BY + `WHERE u.email like '%${param}%'`, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+
+        if (res.length) {
+            console.log("found user(s): ", res);
+            result(null, res);
+            return;
+        }
+
+        // not found User with the id
+        result({ kind: "not_found" }, null);
+    });
+};
+
+User.findByBirthdate = (param, result) => {
+    sql.query(QUERY_FIND_USER_BY + `WHERE u.birth_date = STR_TO_DATE('${param}', '%d.%m.%Y');`, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+
+        if (res.length) {
+            console.log("found user(s): ", res);
+            result(null, res);
+            return;
+        }
+
+        // not found User with the id
+        result({ kind: "not_found" }, null);
+    });
+};
+
+User.findByStatus = (param, result) => {
+    sql.query(QUERY_FIND_USER_BY + `WHERE s.status = '${param}'`, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+
+        if (res.length) {
+            console.log("found user(s): ", res);
+            result(null, res);
+            return;
+        }
+
+        // not found User with the id
+        result({ kind: "not_found" }, null);
+    });
+};
+
 
 module.exports = User;
