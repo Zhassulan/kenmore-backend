@@ -1,14 +1,13 @@
 const uploadFile = require("../middleware/upload");
 
 const upload = (req, res) => {
-    uploadFile(req, res, function(err) {
-        try {
-            return res.status(201).json({
-                message: 'File uploded successfully'
-            });
-        } catch (error) {
-            console.error(error);
-        }
+    uploadFile(req, res, function (err) {
+        if (err) return res.status(500).send({
+            message: "Error uploading file. " + err
+        });
+        return res.status(201).send({
+            message: 'File uploded successfully'
+        });
     });
 }
 
